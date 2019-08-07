@@ -237,18 +237,19 @@ class SSHSniffer(Sniffer):
                 if self.buf is not None and self.buf != "":
                     now = time.strftime("%Y/%m/%d %H:%M:%S")
                     # TODO: add a separate object for json later
-                    jsonmsg = {
-                        'ver': '1',
-                        'host': self.host,
-                        'user': self.user,
-                        'session': str(
-                            self.uuid),
-                        'sessionstart': self.session_date_time,
-                        'timing': now,
-                        'cmd': codecs.decode(
-                            self.buf,
-                            'UTF-8',
-                            "replace")}
+                    jsonmsg = {}
+                    #jsonmsg = {
+                    #    'ver': '1',
+                    #    'host': self.host,
+                    #    'user': self.user,
+                    #    'session': str(
+                    #        self.uuid),
+                    #    'sessionstart': self.session_date_time,
+                    #    'timing': now,
+                    #    'cmd': codecs.decode(
+                    #        self.buf,
+                    #        'UTF-8',
+                    #        "replace")}
                     try:
                         with open(self.log_cmds, 'a') as outfile:
                             # ELK's filebeat require a jsonlines like file
